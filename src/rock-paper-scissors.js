@@ -23,7 +23,10 @@ function asStandardChoice(inputStr) {
 
 function declareWinner(userPick, computerPick) {
   const resultMessage = makeResultMessage(userPick, computerPick);
-  console.log(resultMessage);
+  console.log(resultMessage)
+  if (resultMessage.includes("draw")) { 
+    playRound()
+  }
 }
 
 /**
