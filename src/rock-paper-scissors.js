@@ -5,6 +5,8 @@ const acceptableVariants = {
   rock: ["rock", "Rock", "r", "R"],
   paper: ["paper", "Paper", "p", "P"],
   scissors: ["scissors", "Scissors", "s", "S"],
+  lizard: ["lizard", "Lizard", "l", "L"],
+  spock: ["spock", "Spock", "sp", "Sp"]
 };
 
 function asStandardChoice(inputStr) {
@@ -29,16 +31,19 @@ function declareWinner(userPick, computerPick) {
  */
 function isWinningChoice(firstChoice, secondChoice) {
   const weaknesses = {
-    rock: "paper",
-    paper: "scissors",
-    scissors: "rock",
+    rock: ["paper", "spock"],
+    paper: ["scissors", "lizard"],
+    scissors: ["rock", "spock"],
+    lizard: ["rock", "scissors"],
+    spock: ["lizard", "paper"]
   };
-  return weaknesses[secondChoice] === firstChoice;
+  
+  return weaknesses[secondChoice].includes(firstChoice);
 }
 
 function getUserChoice() {
   while (true) {
-    const answer = prompt("Your choice: rock, paper or scissors? \n> ");
+    const answer = prompt("Your choice: rock, paper, scissors, lizard, spock? \n> ");
     const standardisedChoice = asStandardChoice(answer);
     if (standardisedChoice) {
       // if choice can be standardised, we can exit out of the while loop with a return of the standardisd choice
